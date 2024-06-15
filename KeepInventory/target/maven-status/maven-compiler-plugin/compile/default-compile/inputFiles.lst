@@ -1,10 +1,11 @@
-C:\Users\zugai\OneDrive\Área de Trabalho\faculdade\2024-1(4ºsemestre)\POO 2\KeepInventory\src\main\java\View\telaInicial.java
-C:\Users\zugai\OneDrive\Área de Trabalho\faculdade\2024-1(4ºsemestre)\POO 2\KeepInventory\src\main\java\Control\EstoqueController.java
-C:\Users\zugai\OneDrive\Área de Trabalho\faculdade\2024-1(4ºsemestre)\POO 2\KeepInventory\src\main\java\Control\UsuarioController.java
-C:\Users\zugai\OneDrive\Área de Trabalho\faculdade\2024-1(4ºsemestre)\POO 2\KeepInventory\src\main\java\View\TelaLogin.java
-C:\Users\zugai\OneDrive\Área de Trabalho\faculdade\2024-1(4ºsemestre)\POO 2\KeepInventory\src\main\java\Model\Usuario.java
-C:\Users\zugai\OneDrive\Área de Trabalho\faculdade\2024-1(4ºsemestre)\POO 2\KeepInventory\src\main\java\Model\Gerente.java
-C:\Users\zugai\OneDrive\Área de Trabalho\faculdade\2024-1(4ºsemestre)\POO 2\KeepInventory\src\main\java\Model\Estoque.java
-C:\Users\zugai\OneDrive\Área de Trabalho\faculdade\2024-1(4ºsemestre)\POO 2\KeepInventory\src\main\java\Model\Funcionario.java
-C:\Users\zugai\OneDrive\Área de Trabalho\faculdade\2024-1(4ºsemestre)\POO 2\KeepInventory\src\main\java\Model\Fornecedor.java
-C:\Users\zugai\OneDrive\Área de Trabalho\faculdade\2024-1(4ºsemestre)\POO 2\KeepInventory\src\main\java\Model\Produto.java
+C:\Users\lucca\OneDrive\Documentos\GitHub\Keep-Inventory\KeepInventory\src\main\java\Model\Fornecedor.java
+C:\Users\lucca\OneDrive\Documentos\GitHub\Keep-Inventory\KeepInventory\src\main\java\Model\Usuario.java
+C:\Users\lucca\OneDrive\Documentos\GitHub\Keep-Inventory\KeepInventory\src\main\java\Control\EstoqueController.java
+C:\Users\lucca\OneDrive\Documentos\GitHub\Keep-Inventory\KeepInventory\src\main\java\Control\UsuarioController.java
+C:\Users\lucca\OneDrive\Documentos\GitHub\Keep-Inventory\KeepInventory\src\main\java\Model\Produto.java
+C:\Users\lucca\OneDrive\Documentos\GitHub\Keep-Inventory\KeepInventory\src\main\java\View\TelaLogin.java
+C:\Users\lucca\OneDrive\Documentos\GitHub\Keep-Inventory\KeepInventory\src\main\java\Model\ConnectBD.java
+C:\Users\lucca\OneDrive\Documentos\GitHub\Keep-Inventory\KeepInventory\src\main\java\Model\Funcionario.java
+C:\Users\lucca\OneDrive\Documentos\GitHub\Keep-Inventory\KeepInventory\src\main\java\View\telaInicial.java
+C:\Users\lucca\OneDrive\Documentos\GitHub\Keep-Inventory\KeepInventory\src\main\java\Model\Gerente.java
+C:\Users\lucca\OneDrive\Documentos\GitHub\Keep-Inventory\KeepInventory\src\main\java\Model\Estoque.java

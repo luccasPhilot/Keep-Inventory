@@ -13,6 +13,7 @@ View\telaInicial.class
 Model\Fornecedor.class
 Model\Estoque.class
 Control\EstoqueController.class
+Model\ConnectBD.class
 View\TelaLogin$4.class
 View\telaInicial$2.class
 View\TelaLogin$1.class
