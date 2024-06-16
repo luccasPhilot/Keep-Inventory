@@ -12,7 +12,17 @@ public class Funcionario extends Usuario {
         super(nome, email, senha, cargo);
         this.idFunc = idFunc;
     }
+    
+    
     /*public void visualizarEstoque() {
         // Implementar lógica de visualização do estoque
     }*/
+
+    public int getIdFunc() {
+        return idFunc;
+    }
+
+    public void setIdFunc(int idFunc) {
+        this.idFunc = idFunc;
+    }
 }
