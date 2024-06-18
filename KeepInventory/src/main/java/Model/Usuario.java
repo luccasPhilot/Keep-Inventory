@@ -6,11 +6,22 @@
 package Model;
 
 public class Usuario {
+    private int id;
     private String nome;
     private String email;
     private String senha;
     private String cargo;
 
+    // Construtor com todos os atributos
+    public Usuario(int id, String nome, String email, String senha, String cargo) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.cargo = cargo;
+    }
+
+    // Construtor sem o ID, para inserção no banco de dados (geralmente utilizado)
     public Usuario(String nome, String email, String senha, String cargo) {
         this.nome = nome;
         this.email = email;
@@ -19,6 +30,14 @@ public class Usuario {
     }
 
     // Getters e Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -51,4 +70,3 @@ public class Usuario {
         this.cargo = cargo;
     }
 }
-

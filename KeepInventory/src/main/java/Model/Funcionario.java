@@ -1,22 +1,13 @@
-/**
- *
- * @author zugaib
- */
 package Model;
 
 public class Funcionario extends Usuario {
 
     private int idFunc;
 
-    public Funcionario(String nome, String email, String senha, String cargo, int idFunc) {
-        super(nome, email, senha, cargo);
+    public Funcionario(int id, String nome, String email, String senha, String cargo, int idFunc) {
+        super(id, nome, email, senha, cargo);
         this.idFunc = idFunc;
     }
-    
-    
-    /*public void visualizarEstoque() {
-        // Implementar lógica de visualização do estoque
-    }*/
 
     public int getIdFunc() {
         return idFunc;
@@ -24,5 +15,15 @@ public class Funcionario extends Usuario {
 
     public void setIdFunc(int idFunc) {
         this.idFunc = idFunc;
+    }
+
+    @Override
+    public int getId() {
+        return super.getId();
+    }
+
+    @Override
+    public void setId(int id) {
+        super.setId(id);
     }
 }

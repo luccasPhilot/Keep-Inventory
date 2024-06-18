@@ -2,16 +2,19 @@
  *
  * @author zugaib
  */
-
 package Model;
 
 public class Gerente extends Funcionario {
 
-    public Gerente(String nome, String email, String senha, String cargo, int idFunc) {
-        super(nome, email, senha, cargo, idFunc);
+    public Gerente(int id, String nome, String email, String senha, String cargo, int idFunc) {
+        super(id, nome, email, senha, cargo, idFunc);
     }
 
-   /*private void adicionarFuncionario() {
+    public Gerente(int id, int idFunc) {
+        super(id, "", "", "", "", idFunc);
+    }
+    
+    /*private void adicionarFuncionario() {
         // Implementar lógica para adicionar funcionário
     }
 
@@ -30,4 +33,5 @@ public class Gerente extends Funcionario {
     private void visualizarFornecedores() {
         // Implementar lógica para visualizar fornecedores
     } */
+    
 }

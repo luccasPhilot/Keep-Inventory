@@ -2,7 +2,6 @@
  *
  * @author zugaib
  */
-
 package Model;
 
 public class Produto {
@@ -10,8 +9,8 @@ public class Produto {
     private String nome;
     private double preco;
 
-    public Produto(int id, String nome, double preco) {
-        this.id = id;
+    // Construtores, getters e setters
+    public Produto(String nome, double preco) {
         this.nome = nome;
         this.preco = preco;
     }
@@ -44,4 +43,5 @@ public class Produto {
     /*private void calcularLucro() {
         // Implementar lógica para calcular lucro
     }*/
+    
 }
