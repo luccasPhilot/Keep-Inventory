@@ -4,6 +4,8 @@
  */
 package View;
 
+import Model.Usuario;
+
 /**
  *
  * @author zugaib
@@ -14,6 +16,11 @@ public class Fornecedores extends javax.swing.JFrame {
      * Creates new form Fornecedores
      */
     private static Fornecedores instance;
+    private Usuario usuarioLogado;
+
+    public void setUsuarioLogado(Usuario usuario) {
+        this.usuarioLogado = usuario;
+    }
 
     private Fornecedores() {
         initComponents();

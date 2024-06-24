@@ -20,7 +20,7 @@ public class Usuario {
         this.senha = senha;
         this.cargo = cargo;
     }
-
+    
     // Construtor sem o ID, para inserção no banco de dados (geralmente utilizado)
     public Usuario(String nome, String email, String senha, String cargo) {
         this.nome = nome;
@@ -28,6 +28,7 @@ public class Usuario {
         this.senha = senha;
         this.cargo = cargo;
     }
+ 
 
     // Getters e Setters
     public int getId() {

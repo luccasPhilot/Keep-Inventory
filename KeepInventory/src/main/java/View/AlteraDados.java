@@ -4,6 +4,8 @@
  */
 package View;
 
+import Model.Usuario;
+
 /**
  *
  * @author zugaib
@@ -13,9 +15,13 @@ public class AlteraDados extends javax.swing.JFrame {
     /**
      * Creates new form AlteraDados
      */
-    
     private static AlteraDados instance;
-    
+    private Usuario usuarioLogado;
+
+    public void setUsuarioLogado(Usuario usuario) {
+        this.usuarioLogado = usuario;
+    }
+
     private AlteraDados() {
         initComponents();
         setLocationRelativeTo(null);
@@ -165,8 +171,7 @@ public class AlteraDados extends javax.swing.JFrame {
             }
         });
     }
-    
-    
+
     public static AlteraDados getInstance() {
         if (instance == null) {
             instance = new AlteraDados();

@@ -4,6 +4,8 @@
  */
 package View;
 
+import Model.Usuario;
+
 /**
  *
  * @author zugaib
@@ -14,6 +16,11 @@ public class Funcionario extends javax.swing.JFrame {
      * Creates new form Funcionario
      */
     private static Funcionario instance;
+    private Usuario usuarioLogado;
+
+    public void setUsuarioLogado(Usuario usuario) {
+        this.usuarioLogado = usuario;
+    }
 
     private Funcionario() {
         initComponents();
