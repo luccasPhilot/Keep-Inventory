@@ -13,8 +13,11 @@ public class TelaLogin extends javax.swing.JFrame {
     /**
      * Creates new form TelaLogin
      */
-    public TelaLogin() {
+    private static TelaLogin instance;
+    
+    private TelaLogin() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -146,9 +149,16 @@ public class TelaLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaLogin().setVisible(true);
+                TelaLogin.getInstance().setVisible(true);
             }
         });
+    }
+    
+      public static TelaLogin getInstance() {
+        if (instance == null) {
+            instance = new TelaLogin();
+        }
+        return instance;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
