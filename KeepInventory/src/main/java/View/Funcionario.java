@@ -110,7 +110,9 @@ public class Funcionario extends javax.swing.JFrame {
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:
         dispose();
-        TelaInicial.getInstance().setVisible(true);
+        TelaInicial telaInicial = TelaInicial.getInstance();
+        telaInicial.setUsuarioLogado(usuarioLogado);
+        telaInicial.setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
