@@ -4,7 +4,12 @@
  */
 package View;
 
+import Control.FornecedorDAO;
+import Model.Fornecedor;
 import Model.Usuario;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +22,7 @@ public class Fornecedores extends javax.swing.JFrame {
      */
     private static Fornecedores instance;
     private Usuario usuarioLogado;
+    private FornecedorDAO fornecedorDAO;
 
     public void setUsuarioLogado(Usuario usuario) {
         this.usuarioLogado = usuario;
@@ -25,6 +31,7 @@ public class Fornecedores extends javax.swing.JFrame {
     private Fornecedores() {
         initComponents();
         setLocationRelativeTo(null);
+        fornecedorDAO = new FornecedorDAO();
     }
 
     /**
@@ -44,6 +51,11 @@ public class Fornecedores extends javax.swing.JFrame {
         btnExcForn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Fornecedores");
@@ -69,8 +81,18 @@ public class Fornecedores extends javax.swing.JFrame {
         });
 
         btnCadForn.setText("Cadastrar Fornecedor");
+        btnCadForn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadFornActionPerformed(evt);
+            }
+        });
 
         btnExcForn.setText("Excluir Fornecedor");
+        btnExcForn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcFornActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,7 +106,7 @@ public class Fornecedores extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnVoltar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -118,6 +140,59 @@ public class Fornecedores extends javax.swing.JFrame {
         telaInicial.setUsuarioLogado(usuarioLogado);
         telaInicial.setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnCadFornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadFornActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        CadFornecedor cf = CadFornecedor.getInstance();
+        cf.setUsuarioLogado(usuarioLogado);
+        cf.setVisible(true);
+    }//GEN-LAST:event_btnCadFornActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        carregarDadosForn();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void btnExcFornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcFornActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecione um fornecedor para excluir.");
+            return;
+        }
+
+        int idFornecedor = (int) jTable1.getValueAt(selectedRow, 0);
+        String nomeFornecedor = (String) jTable1.getValueAt(selectedRow, 1);
+
+        int confirmacao = JOptionPane.showConfirmDialog(this,
+                "Tem certeza de que deseja excluir o fornecedor: " + nomeFornecedor + "?",
+                "Confirmação de Exclusão",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirmacao == JOptionPane.YES_OPTION) {
+            fornecedorDAO.deletarFornecedor(idFornecedor);
+            carregarDadosForn();
+            JOptionPane.showMessageDialog(this, "Fornecedor excluído com sucesso.");
+        }
+    }//GEN-LAST:event_btnExcFornActionPerformed
+
+    private void carregarDadosForn() {
+        List<Fornecedor> listaFornecedores = fornecedorDAO.listarTodosFornecedores();
+
+        DefaultTableModel modeloTabela = (DefaultTableModel) jTable1.getModel();
+
+        modeloTabela.setRowCount(0);
+
+        for (Fornecedor fornecedor : listaFornecedores) {
+            Object[] linha = {
+                fornecedor.getId(),
+                fornecedor.getNome()
+            };
+            modeloTabela.addRow(linha);
+        }
+    }
 
     /**
      * @param args the command line arguments

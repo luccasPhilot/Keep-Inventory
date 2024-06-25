@@ -4,7 +4,12 @@
  */
 package View;
 
+import Control.UsuarioDAO;
+import Model.Produto;
 import Model.Usuario;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +22,8 @@ public class Funcionario extends javax.swing.JFrame {
      */
     private static Funcionario instance;
     private Usuario usuarioLogado;
+
+    UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     public void setUsuarioLogado(Usuario usuario) {
         this.usuarioLogado = usuario;
@@ -44,6 +51,11 @@ public class Funcionario extends javax.swing.JFrame {
         btnExcFunc = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Funcionarios");
@@ -69,8 +81,18 @@ public class Funcionario extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable2);
 
         btnCadFunc.setText("Cadastrar Funcionario");
+        btnCadFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadFuncActionPerformed(evt);
+            }
+        });
 
         btnExcFunc.setText("Excluir Funcionario");
+        btnExcFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcFuncActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,6 +136,51 @@ public class Funcionario extends javax.swing.JFrame {
         telaInicial.setUsuarioLogado(usuarioLogado);
         telaInicial.setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnCadFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadFuncActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        CadFuncionario cf = CadFuncionario.getInstance();
+        cf.setUsuarioLogado(usuarioLogado);
+        cf.setVisible(true);
+    }//GEN-LAST:event_btnCadFuncActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        carregarDadosFunc();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void btnExcFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcFuncActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable2.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione um funcionário para excluir.");
+            return;
+        }
+
+        int id = (int) jTable2.getValueAt(selectedRow, 0);
+        usuarioDAO.deletarUsuario(id);
+        JOptionPane.showMessageDialog(this, "Funcionário excluído com sucesso!");
+        carregarDadosFunc();
+    }//GEN-LAST:event_btnExcFuncActionPerformed
+
+    private void carregarDadosFunc() {
+
+        List<Usuario> listaUsuarios = usuarioDAO.listarTodosUsuarios();
+
+        DefaultTableModel modeloTabela = (DefaultTableModel) jTable2.getModel();
+
+        modeloTabela.setRowCount(0);
+
+        for (Usuario usuario : listaUsuarios) {
+            Object[] linha = {
+                usuario.getId(),
+                usuario.getNome(),
+                usuario.getEmail()
+            };
+            modeloTabela.addRow(linha);
+        }
+    }
 
     /**
      * @param args the command line arguments

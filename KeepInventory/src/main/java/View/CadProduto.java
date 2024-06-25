@@ -139,6 +139,8 @@ public class CadProduto extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Produto adicionado com sucesso!");
         dispose();
         Estoque.getInstance().setVisible(true);
+        tfNome.setText("");
+        tfPreco.setText("");
     }//GEN-LAST:event_btnCadActionPerformed
 
     public static CadProduto getInstance() {
