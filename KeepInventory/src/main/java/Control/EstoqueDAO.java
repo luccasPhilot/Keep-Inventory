@@ -20,7 +20,7 @@ public class EstoqueDAO {
     public static String driver = "com.mysql.cj.jdbc.Driver";
     public static String url = "jdbc:mysql://localhost:3306/keepinventorybd";
     public static String user= "root";
-    public static String password = "#Jp123jp123";
+    public static String password = "";
     
     // Método para inserir estoque
     public void inserirEstoque(Estoque estoque) {

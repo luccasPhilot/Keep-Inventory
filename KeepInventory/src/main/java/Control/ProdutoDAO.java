@@ -18,7 +18,7 @@ public class ProdutoDAO {
 
     private String url = "jdbc:mysql://localhost:3306/keepinventoryBD";
     private String user = "root";
-    private String password = "#Jp123jp123";
+    private String password = "";
     private String driver = "com.mysql.cj.jdbc.Driver";
 
     public void inserirProduto(Produto produto) {
