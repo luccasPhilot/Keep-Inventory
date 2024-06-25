@@ -13,7 +13,7 @@ import Model.Usuario;
 public class TelaInicial extends javax.swing.JFrame {
 
     /**
-     * Creates new form telaInicial
+     * Creates new form TelaInicial
      */
     private static TelaInicial instance;
     private Usuario usuarioLogado;
@@ -36,14 +36,13 @@ public class TelaInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-        lNome = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        btnPerfil = new javax.swing.JButton();
         btnEstoque = new javax.swing.JButton();
+        btnFunc = new javax.swing.JButton();
         btnForn = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
-        btnPerfil = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        lNome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -52,10 +51,15 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel3.setText("Início");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setText("Seja Bem-Vindo");
 
-        lNome.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnPerfil.setText("Perfil");
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfilActionPerformed(evt);
+            }
+        });
 
         btnEstoque.setText("Estoque");
         btnEstoque.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +68,14 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        btnForn.setText("Lista de Fornecedores");
+        btnFunc.setText("Funcionario");
+        btnFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFuncActionPerformed(evt);
+            }
+        });
+
+        btnForn.setText("Fornecedores");
         btnForn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFornActionPerformed(evt);
@@ -78,109 +89,99 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        btnPerfil.setText("Perfil");
-        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPerfilActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Funcionários");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel5.setText("Bem vindo");
+        lNome.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(lNome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSair))
-                    .addComponent(jLabel3))
-                .addGap(14, 14, 14))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnForn)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addGap(196, 196, 196)
+                .addComponent(lNome, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(200, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(155, 155, 155)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnFunc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnForn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(349, 349, 349)
+                            .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(lNome)
-                    .addComponent(jLabel5))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 244, Short.MAX_VALUE)
-                        .addComponent(btnSair)
-                        .addGap(14, 14, 14))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(btnPerfil)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEstoque)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnForn)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(19, 19, 19)
+                .addComponent(lNome, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(270, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel5)
+                    .addGap(65, 65, 65)
+                    .addComponent(btnPerfil)
+                    .addGap(18, 18, 18)
+                    .addComponent(btnEstoque)
+                    .addGap(18, 18, 18)
+                    .addComponent(btnFunc)
+                    .addGap(18, 18, 18)
+                    .addComponent(btnForn)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                    .addComponent(btnSair)
+                    .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        // TODO add your handling code here:
+        Perfil p = Perfil.getInstance();
+        p.setUsuarioLogado(usuarioLogado);
+        p.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnPerfilActionPerformed
+
     private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed
         // TODO add your handling code here:
+        Estoque e = Estoque.getInstance();
+        e.setUsuarioLogado(usuarioLogado);
+        e.setVisible(true);
         dispose();
-        Estoque.getInstance().setUsuarioLogado(usuarioLogado);
-        Estoque.getInstance().setVisible(true);
     }//GEN-LAST:event_btnEstoqueActionPerformed
+
+    private void btnFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncActionPerformed
+        // TODO add your handling code here:
+        Funcionario f = Funcionario.getInstance();
+        f.setUsuarioLogado(usuarioLogado);
+        f.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnFuncActionPerformed
 
     private void btnFornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFornActionPerformed
         // TODO add your handling code here:
+        Fornecedores fr = Fornecedores.getInstance();
+        fr.setUsuarioLogado(usuarioLogado);
+        fr.setVisible(true);
         dispose();
-        Fornecedores.getInstance().setUsuarioLogado(usuarioLogado);
-        Fornecedores.getInstance().setVisible(true);
     }//GEN-LAST:event_btnFornActionPerformed
-
-    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-        // TODO add your handling code here:
-        dispose();
-        Perfil.getInstance().setUsuarioLogado(usuarioLogado);
-        Perfil.getInstance().setVisible(true);
-    }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         // TODO add your handling code here:
         dispose();
         TelaLogin.getInstance().setVisible(true);
     }//GEN-LAST:event_btnSairActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        dispose();
-        Funcionario.getInstance().setUsuarioLogado(usuarioLogado);
-        Funcionario.getInstance().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
@@ -215,14 +216,11 @@ public class TelaInicial extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaInicial.getInstance().setVisible(true);
+                new TelaInicial().setVisible(true);
             }
         });
     }
@@ -234,13 +232,13 @@ public class TelaInicial extends javax.swing.JFrame {
         return instance;
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEstoque;
     private javax.swing.JButton btnForn;
+    private javax.swing.JButton btnFunc;
     private javax.swing.JButton btnPerfil;
     private javax.swing.JButton btnSair;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lNome;
     // End of variables declaration//GEN-END:variables
