@@ -4,7 +4,12 @@
  */
 package View;
 
+import Control.ProdutoDAO;
+import Model.Produto;
 import Model.Usuario;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +22,7 @@ public class Estoque extends javax.swing.JFrame {
      */
     private static Estoque instance;
     private Usuario usuarioLogado;
+    private ProdutoDAO produtoDAO;
 
     public void setUsuarioLogado(Usuario usuario) {
         this.usuarioLogado = usuario;
@@ -25,6 +31,7 @@ public class Estoque extends javax.swing.JFrame {
     private Estoque() {
         initComponents();
         setLocationRelativeTo(null);
+        produtoDAO = new ProdutoDAO();
     }
 
     /**
@@ -38,17 +45,22 @@ public class Estoque extends javax.swing.JFrame {
 
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbProds = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
         btnAddProd = new javax.swing.JButton();
         btnExcProd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Estoque");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbProds.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -59,7 +71,7 @@ public class Estoque extends javax.swing.JFrame {
                 "Id", "Nome", "Preço"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tbProds);
 
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -69,8 +81,18 @@ public class Estoque extends javax.swing.JFrame {
         });
 
         btnAddProd.setText("Adicionar Produto");
+        btnAddProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddProdActionPerformed(evt);
+            }
+        });
 
         btnExcProd.setText("Excluir Produto");
+        btnExcProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcProdActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,16 +110,16 @@ public class Estoque extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnExcProd))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVoltar)
                     .addComponent(btnAddProd)
@@ -113,6 +135,42 @@ public class Estoque extends javax.swing.JFrame {
         dispose();
         TelaInicial.getInstance().setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        carregarDadosTabela();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void btnAddProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProdActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        CadProduto cadp = CadProduto.getInstance();
+        cadp.setVisible(true);
+    }//GEN-LAST:event_btnAddProdActionPerformed
+
+    private void btnExcProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcProdActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tbProds.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione um produto para excluir.");
+            return;
+        }
+
+        int id = (int) tbProds.getValueAt(selectedRow, 0);
+        produtoDAO.deletarProduto(id);
+        JOptionPane.showMessageDialog(this, "Produto excluído com sucesso!");
+        carregarDadosTabela();
+
+    }//GEN-LAST:event_btnExcProdActionPerformed
+
+    private void carregarDadosTabela() {
+        List<Produto> produtos = produtoDAO.buscarTodosProdutos();
+        DefaultTableModel model = (DefaultTableModel) tbProds.getModel();
+        model.setRowCount(0); // Limpa a tabela antes de adicionar novos dados
+        for (Produto produto : produtos) {
+            model.addRow(new Object[]{produto.getId(), produto.getNome(), produto.getPreco()});
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -162,6 +220,6 @@ public class Estoque extends javax.swing.JFrame {
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tbProds;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,30 +4,26 @@
  */
 package View;
 
-import Control.UsuarioDAO;
-import Model.Usuario;
+import Control.ProdutoDAO;
+import Model.Produto;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author zugaib
  */
-public class AlteraDados extends javax.swing.JFrame {
+public class CadProduto extends javax.swing.JFrame {
 
     /**
-     * Creates new form AlteraDados
+     * Creates new form CadProduto
      */
-    private UsuarioDAO ud = new UsuarioDAO();
-    private static AlteraDados instance;
-    private Usuario usuarioLogado;
+    private static CadProduto instance;
+    private ProdutoDAO produtoDAO;
 
-    public void setUsuarioLogado(Usuario usuario) {
-        this.usuarioLogado = usuario;
-    }
-
-    private AlteraDados() {
+    public CadProduto() {
         initComponents();
         setLocationRelativeTo(null);
+        produtoDAO = new ProdutoDAO();
     }
 
     /**
@@ -39,17 +35,18 @@ public class AlteraDados extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
+        tfNome = new javax.swing.JTextField();
+        tfPreco = new javax.swing.JTextField();
         btnVoltar = new javax.swing.JButton();
-        btnEdit = new javax.swing.JButton();
+        btnCad = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        tfNome = new javax.swing.JTextField();
-        tfSenha = new javax.swing.JTextField();
-        tfEmail = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setText("Preço:");
 
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -58,24 +55,18 @@ public class AlteraDados extends javax.swing.JFrame {
             }
         });
 
-        btnEdit.setText("Salvar");
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+        btnCad.setText("Cadastrar");
+        btnCad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
+                btnCadActionPerformed(evt);
             }
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel4.setText("Altere seus Dados");
+        jLabel4.setText("Cadastre o Produto");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setText("Nome:");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setText("Email:");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel7.setText("Senha:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,23 +75,21 @@ public class AlteraDados extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCad, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(130, 130, 130))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -115,16 +104,12 @@ public class AlteraDados extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(btnEdit)
+                    .addComponent(tfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addComponent(btnCad)
                 .addGap(18, 18, 18)
                 .addComponent(btnVoltar)
-                .addGap(27, 27, 27))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,33 +118,34 @@ public class AlteraDados extends javax.swing.JFrame {
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:
         dispose();
-        Perfil.getInstance().setVisible(true);
+        Estoque estoque = Estoque.getInstance();
+        estoque.setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+    private void btnCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadActionPerformed
         // TODO add your handling code here:
-        salvaDados();
-        dispose();
-        Perfil.getInstance().setVisible(true);
-    }//GEN-LAST:event_btnEditActionPerformed
 
-    public void salvaDados() {
-        String nome = tfNome.getText().trim();
-        String email = tfEmail.getText().trim();
-        String senha = tfSenha.getText().trim();
-
-        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos", "Erro ao salvar", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            usuarioLogado.setNome(nome);
-            usuarioLogado.setEmail(email);
-            usuarioLogado.setSenha(senha);
-            ud.atualizarUsuario(usuarioLogado);
-            JOptionPane.showMessageDialog(null, "Dados salvos com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            tfNome.setText("");
-            tfEmail.setText("");
-            tfSenha.setText("");
+        String nome = tfNome.getText();
+        double preco;
+        try {
+            preco = Double.parseDouble(tfPreco.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Preço inválido!");
+            return;
         }
+
+        Produto produto = new Produto(nome, preco);
+        produtoDAO.inserirProduto(produto);
+        JOptionPane.showMessageDialog(this, "Produto adicionado com sucesso!");
+        dispose();
+        Estoque.getInstance().setVisible(true);
+    }//GEN-LAST:event_btnCadActionPerformed
+
+    public static CadProduto getInstance() {
+        if (instance == null) {
+            instance = new CadProduto();
+        }
+        return instance;
     }
 
     /**
@@ -179,41 +165,31 @@ public class AlteraDados extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AlteraDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AlteraDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AlteraDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AlteraDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AlteraDados.getInstance().setVisible(true);
+                new CadProduto().setVisible(true);
             }
         });
     }
 
-    public static AlteraDados getInstance() {
-        if (instance == null) {
-            instance = new AlteraDados();
-        }
-        return instance;
-    }
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnCad;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfNome;
-    private javax.swing.JTextField tfSenha;
+    private javax.swing.JTextField tfPreco;
     // End of variables declaration//GEN-END:variables
 }

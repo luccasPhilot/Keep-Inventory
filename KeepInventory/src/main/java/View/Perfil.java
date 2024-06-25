@@ -21,7 +21,7 @@ public class Perfil extends javax.swing.JFrame {
     public void setUsuarioLogado(Usuario usuario) {
         this.usuarioLogado = usuario;
     }
-    
+
     private Perfil() {
         initComponents();
         setLocationRelativeTo(null);
@@ -47,6 +47,11 @@ public class Perfil extends javax.swing.JFrame {
         lbCargo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("Perfil");
@@ -150,8 +155,19 @@ public class Perfil extends javax.swing.JFrame {
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
         dispose();
-        AlteraDados.getInstance().setVisible(true);
+        AlteraDados alteraDados = AlteraDados.getInstance();
+        alteraDados.setUsuarioLogado(usuarioLogado);
+        alteraDados.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        if (usuarioLogado != null) {
+            lbNome.setText(usuarioLogado.getNome());
+            lbEmail.setText(usuarioLogado.getEmail());
+            lbCargo.setText(usuarioLogado.getCargo());
+        }
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

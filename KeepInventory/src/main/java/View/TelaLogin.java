@@ -126,8 +126,9 @@ public class TelaLogin extends javax.swing.JFrame {
 
             if (ud.buscarUsuarioPorEmail(email) != null && ud.buscarUsuarioPorSenha(senha) != null) {
                 Usuario u1 = ud.buscarUsuarioPorEmail(email);
-                TelaInicial.getInstance().setUsuarioLogado(u1);
-                TelaInicial.getInstance().setVisible(true);
+                TelaInicial telaInicial = TelaInicial.getInstance();
+                telaInicial.setUsuarioLogado(u1);
+                telaInicial.setVisible(true);
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(
@@ -140,7 +141,7 @@ public class TelaLogin extends javax.swing.JFrame {
             tfSenha.setText("");
             tfLogin.setText("");
         } catch (Exception e) {
-                System.out.println("Erro no login (email ou senha)");
+            System.out.println("Erro no login (email ou senha)");
         }
     }
 
