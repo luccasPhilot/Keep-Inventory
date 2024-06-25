@@ -76,3 +76,20 @@ CREATE TABLE Estoque_Produto (
 -- Criando índices para melhorar a performance
 CREATE INDEX idx_usuario_email ON Usuario (email);
 CREATE INDEX idx_produto_nome ON Produto (nome);
+
+-- Trigger para inserir registros na tabela Funcionario ou Gerente com base no cargo do usuário
+DELIMITER //
+
+CREATE TRIGGER insere_funcionario_ou_gerente_after_insert_usuario
+AFTER INSERT ON Usuario
+FOR EACH ROW
+BEGIN
+    IF NEW.cargo = 'Funcionario' THEN
+        INSERT INTO Funcionario (usuario_id) VALUES (NEW.id);
+    ELSEIF NEW.cargo = 'Gerente' THEN
+        INSERT INTO Funcionario (usuario_id) VALUES (NEW.id);
+        INSERT INTO Gerente (funcionario_id) VALUES (LAST_INSERT_ID());
+    END IF;
+END//
+
+DELIMITER ;
