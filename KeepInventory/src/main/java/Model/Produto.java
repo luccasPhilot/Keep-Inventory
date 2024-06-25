@@ -40,8 +40,5 @@ public class Produto {
         this.preco = preco;
     }
 
-    /*private void calcularLucro() {
-        // Implementar lógica para calcular lucro
-    }*/
     
 }

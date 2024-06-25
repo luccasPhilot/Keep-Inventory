@@ -4,17 +4,27 @@
  */
 package View;
 
+import javax.swing.JOptionPane;
+import Control.UsuarioDAO;
+import Model.Usuario;
+
 /**
  *
  * @author zugaib
  */
+import javax.sound.sampled.Control;
+
 public class TelaLogin extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaLogin
      */
-    public TelaLogin() {
+    private static TelaLogin instance;
+    private UsuarioDAO ud = new UsuarioDAO();
+
+    private TelaLogin() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -54,7 +64,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Login");
+        jLabel1.setText("Email");
 
         jLabel2.setText("Senha");
 
@@ -106,7 +116,34 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+        login();
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    void login() {
+        try {
+            String email = tfLogin.getText();
+            String senha = tfSenha.getText();
+
+            if (ud.buscarUsuarioPorEmail(email) != null && ud.buscarUsuarioPorSenha(senha) != null) {
+                Usuario u1 = ud.buscarUsuarioPorEmail(email);
+                TelaInicial telaInicial = TelaInicial.getInstance();
+                telaInicial.setUsuarioLogado(u1);
+                telaInicial.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Não foi Possível fazer o Login!",
+                        "Erro",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+            tfSenha.setText("");
+            tfLogin.setText("");
+        } catch (Exception e) {
+            System.out.println("Erro no login (email ou senha)");
+        }
+    }
 
     private void tfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSenhaActionPerformed
         // TODO add your handling code here:
@@ -146,9 +183,16 @@ public class TelaLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaLogin().setVisible(true);
+                TelaLogin.getInstance().setVisible(true);
             }
         });
+    }
+
+    public static TelaLogin getInstance() {
+        if (instance == null) {
+            instance = new TelaLogin();
+        }
+        return instance;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -159,4 +203,8 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JTextField tfLogin;
     private javax.swing.JTextField tfSenha;
     // End of variables declaration//GEN-END:variables
+
+    private void TelaInicial() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
